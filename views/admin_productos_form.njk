@@ -1,0 +1,52 @@
+
+{% extends "admin_base.njk" %}
+
+{% block titulo %}Editar Producto{% endblock %}
+
+{% block contenido %}
+    {% if (producto) %}
+        <h1>Editar producto</h1>
+        <form action="/admin/{{producto.id}}" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="_method" value="put"/>
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control" name="nombre" value="{{producto.nombre}}" required="required"/>
+            </div>
+            <div class="form-group">
+                <label for="precio">Precio:</label>
+                <input type="number" step="any" class="form-control" name="precio" value="{{producto.precio}}" required="required"/>
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Descripción:</label>
+                <input type="text" class="form-control" name="descripcion" value="{{producto.descripcion}}" required="required"/>
+            </div>
+            <div class="form-group">
+                <label for="imagen">Imagen:</label><br>
+                <img id="imagenProdForm" src="/public/uploads/{{producto.imagen}}">
+                <input type="file" class="form-control" name="imagen"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    {% else %}
+        <h1>Crear un nuevo producto</h1>
+        <form action="/admin" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control" name="nombre" placeholder="Nombre del producto..." required="required"/>
+            </div>
+            <div class="form-group">
+                <label for="precio">Precio:</label>
+                <input type="number" step="any" class="form-control" name="precio" placeholder="Precio del producto..." required="required"/>
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Descripción:</label>
+                <input type="text" class="form-control" name="descripcion" placeholder="Descripción del producto..." required="required"/>
+            </div>
+            <div class="form-group">
+                <label for="imagen">Imagen:</label><br>
+                <input type="file" class="form-control" name="imagen"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Crear</button>
+        </form>
+    {% endif %}
+{% endblock %}

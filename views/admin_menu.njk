@@ -1,0 +1,9 @@
+<nav class="alert alert-info">
+    <a class="btn btn-info" href="/">Inicio</a>
+    <a class="btn btn-info" href="/admin">Añadir Producto</a>
+    {% if (session and session.login) %}
+        <a class="btn btn-info" href="/auth/logout">Logout</a>
+    {% else %}
+        <a class="btn btn-info" href="/auth/login">Login</a>
+    {% endif %}
+</nav>

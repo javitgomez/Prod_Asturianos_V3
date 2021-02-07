@@ -1,0 +1,50 @@
+
+const mongoose = require('mongoose');
+
+// Definición del schema de Comentarios
+let comentarioSchema = new mongoose.Schema({
+    nombreUsuario: {
+        require: true,
+        type: String,
+        trim: true
+    },
+    comentario: {
+        type: String,
+        require: true,
+        minlength: 5,
+        trim: true
+    }
+});
+
+// Definición del schema de Productos
+let productoSchema = new mongoose.Schema({
+    nombre: {
+        required: true,
+        type: String,
+        minlength: 3,
+        trim: true
+    },
+    precio: {
+        required: true,
+        type: Number,
+        min: 1
+    },
+    descripcion: {
+        required: true,
+        type: String,
+        trim: true
+    },
+    imagen: {
+        type: String,
+        required: false,
+        trim: true
+    },
+    comentarios: [
+        comentarioSchema
+    ]
+});
+// Modelo de los Productos
+let Producto = mongoose.model('producto', productoSchema);
+
+module.exports = Producto;
+
